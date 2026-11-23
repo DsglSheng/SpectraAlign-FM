@@ -1,0 +1,20 @@
+[
+  {
+    "method": "SpectralEarth",
+    "path": "/mnt/Data/SpectralData/SpectralEarth_Aware_Comparison_20260608/results/hypersigma_specaware_protocol_20260614/classification/hc/specvit_small_mae/test_metrics.json"
+  },
+  {
+    "method": "HyperSIGMA",
+    "path": "/mnt/Data/SpectralData/cross_sensor_uav_20260812/results/hypersigma_hc_seed3704/test_metrics.json",
+    "selector": "best_val_oa"
+  },
+  {
+    "method": "SpecAware",
+    "path": "/mnt/Data/SpectralData/SpecAware_HyperSigma_Comparison_20260517/results/hypersigma_downstream_20260517/results/classification_hc/specaware_base_hypersigma_config/test_metrics.json"
+  },
+  {
+    "method": "Ours",
+    "path": "/mnt/Data/SpectralData/DZ1_joint_pretrain_202607/downstream_finetune_202607/results/aware_hsi_dz1_525k_fromscratch_v1/classification_hc/test_metrics.json",
+    "selector": "best_val_oa"
+  }
+]

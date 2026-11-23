@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "status": "authorized_for_execution_2026-07-06",
+  "run_name": "final_pretrain_hyperglobal_dz1_525k_fromscratch_v1",
+  "objective": "Train the final paper foundation model from random initialization on HyperGlobal-450K plus DZ1-202607, with four sensor-specific ground-spectral prototype banks.",
+  "scientific_control": {
+    "reference_checkpoint": "checkpoints/eo1_gf5_reference.pt",
+    "reference_use": "downstream comparison only; never loaded by the new pretraining run",
+    "reference_stage_a_steps": 10035,
+    "reference_stage_b_new_steps": 154535,
+    "total_optimizer_steps": 164570,
+    "reason": "Keep architecture, objective weights, global batch, and update budget fixed so the main changed factor is the joint corpus and its two DZ1 prototype banks."
+  },
+  "data": {
+    "joint_manifest": "manifests/hyperglobal_dz1_core.jsonl",
+    "samples": 524979,
+    "shards": 2056,
+    "sensor_counts": {
+      "eo1": 247072,
+      "gf5": 200000,
+      "dz1_vnir": 45342,
+      "dz1_swir": 32565
+    },
+    "sensor_sampling_temperature": 1.0,
+    "sensor_sampling_mode": "natural_shard_local",
+    "sampler_epoch_size": 524976,
+    "sampler_epoch_nominal_counts": {
+      "eo1": 247072,
+      "gf5": 200000,
+      "dz1_vnir": 45342,
+      "dz1_swir": 32565
+    },
+    "sampler_drop_last_samples": 3
+  },
+  "ground_spectral_prior": {
+    "integration": "prototype_teacher_prior_not_a_separate_minibatch_stream",
+    "source_ground_samples": 30427,
+    "prototype_count_per_sensor": 256,
+    "eo1_bank": "prototype_banks/prototype_bank_eo1.pt",
+    "gf5_bank": "prototype_banks/prototype_bank_gf5.pt",
+    "dz1_vnir_bank": "prototype_banks/prototype_bank_dz1_vnir.pt",
+    "dz1_swir_bank": "prototype_banks/prototype_bank_dz1_swir.pt"
+  },
+  "compute": {
+    "world_size": 4,
+    "batch_size_per_gpu": 112,
+    "global_batch": 448,
+    "precision": "bf16",
+    "num_workers_per_rank": 2,
+    "prefetch_factor": 1,
+    "gradient_accumulation": 1,
+    "gradient_clip": 1.0,
+    "seed": 20260705
+  },
+  "stage_a_neutral": {
+    "initialization": "random",
+    "max_optimizer_steps": 10035,
+    "learning_rate": 3e-05,
+    "minimum_learning_rate": 3e-06,
+    "warmup_steps": 1000,
+    "metadata_ablation": "none",
+    "loss": {
+      "reconstruction_low": 0.0,
+      "reconstruction_mid": 0.0,
+      "reconstruction_full": 1.0,
+      "proto_kl": 0.0,
+      "proto_balance": 0.0,
+      "continue_original": 1.0,
+      "continue_sam": 0.0,
+      "continue_charbonnier": 0.0,
+      "continue_derivative": 0.0,
+      "continue_band_dropout": 0.0
+    }
+  },
+  "stage_b_full": {
+    "initialization": "stage_a_model_weights_with_new_optimizer",
+    "max_optimizer_steps": 154535,
+    "learning_rate": 2e-05,
+    "minimum_learning_rate": 3e-06,
+    "warmup_steps": 1000,
+    "metadata_ablation": "full",
+    "loss": {
+      "reconstruction_low": 0.1,
+      "reconstruction_mid": 0.2,
+      "reconstruction_full": 0.7,
+      "proto_kl": 0.03,
+      "proto_balance": 0.005,
+      "continue_original": 0.55,
+      "continue_sam": 0.22,
+      "continue_charbonnier": 0.13,
+      "continue_derivative": 0.06,
+      "continue_band_dropout": 0.04,
+      "band_dropout_ratio": 0.15
+    },
+    "expanded_effective_coefficients": {
+      "reconstruction_low": 0.055,
+      "reconstruction_mid": 0.11,
+      "reconstruction_full": 0.385,
+      "proto_kl": 0.0165,
+      "proto_balance": 0.00275,
+      "sam": 0.22,
+      "charbonnier": 0.13,
+      "derivative": 0.06,
+      "band_dropout": 0.04
+    }
+  },
+  "checkpoint_selection": {
+    "primary": "stage_b_full_joint154535/checkpoints/best_total.pt",
+    "backup": "the exact max-step completion checkpoint",
+    "rule": "Use the predeclared primary checkpoint for all downstream tasks; do not choose different pretraining checkpoints per downstream dataset."
+  },
+  "execution_gate": "CONFIRM_FINAL_PRETRAIN=1",
+  "stage_c_metadata_ablation": "deprioritized_not_part_of_final_run"
+}

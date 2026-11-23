@@ -1,0 +1,12 @@
+{
+  "dataset": "manifests/hyperglobal_dz1_100k.jsonl",
+  "initial_checkpoint": "checkpoints/neutral_warmup.pt",
+  "default_max_steps": 20000,
+  "seed": 20260705,
+  "branches": {
+    "full_metadata": "full",
+    "no_sample_metadata": "no_sample",
+    "no_band_metadata": "no_band",
+    "no_metadata": "none"
+  }
+}

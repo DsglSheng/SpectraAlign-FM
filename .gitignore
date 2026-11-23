@@ -1,0 +1,45 @@
+# Python environments, caches, and distributions
+__pycache__/
+*.py[cod]
+.*_cache/
+.tmp-tests/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+*.netrc
+.vscode/
+.idea/
+
+# Data and experiment outputs
+/data/
+/artifacts/
+/pretraining/data/
+/benchmarks/**/data/
+checkpoints/
+logs/
+reports/
+result/
+results/
+runs/
+*.log
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.npz
+*.npy
+*.mat
+*.tif
+*.tiff
+*.nc

@@ -1,0 +1,294 @@
+{
+  "model_name": "aware_hsi_dz1_525k_fromscratch_v1",
+  "aware_root": "${REPO_ROOT}",
+  "project_root": "${DOWNSTREAM_ROOT}",
+  "default_checkpoint": "${REPO_ROOT}/pretraining/runs/final_pretrain_hyperglobal_dz1_525k_fromscratch_v1/stage_b_full_joint154535/checkpoints/best_total.pt",
+  "fallback_checkpoint": "${REPO_ROOT}/pretraining/runs/final_pretrain_hyperglobal_dz1_525k_fromscratch_v1/stage_b_full_joint154535/checkpoints/latest.pt",
+  "prototype_bank_eo1": "${SPECTRAALIGN_DATA_ROOT}/prototype_banks/prototype_bank_eo1.pt",
+  "prototype_bank_gf5": "${SPECTRAALIGN_DATA_ROOT}/prototype_banks/prototype_bank_gf5.pt",
+  "tasks": [
+    {
+      "id": "classification_ip",
+      "display_name": "Indian Pines classification",
+      "family": "classification",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_classification.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/classification_ip.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/ip_hypersigma_seg_proto_improve_20260520/results/ip_seg_proto_eo1_w015_seed3704_tta/ours_v3wa_kl003_full450k/test_metrics.json",
+      "default_gpu": 0,
+      "note": "Previous paper branch: IP prototype-logit/TTA pipeline."
+    },
+    {
+      "id": "classification_pu",
+      "display_name": "Pavia University classification",
+      "family": "classification",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_classification.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/classification_pu.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/ours_v3wa_kl003_full450k_downstream_20260508/results/classification_pu/ours_v3wa_kl003_full450k/test_metrics.json",
+      "default_gpu": 1
+    },
+    {
+      "id": "classification_hc",
+      "display_name": "HanChuan classification",
+      "family": "classification",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_classification.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/classification_hc.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/ours_v3wa_kl003_full450k_downstream_20260508/results/classification_hanchuan/ours_v3wa_kl003_full450k/test_metrics.json",
+      "default_gpu": 2
+    },
+    {
+      "id": "classification_hh",
+      "display_name": "HongHu classification",
+      "family": "classification",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_classification.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/classification_hh.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/ours_v3wa_kl003_full450k_downstream_20260508/results/classification_hh/ours_v3wa_kl003_full450k/test_metrics.json",
+      "default_gpu": 3
+    },
+    {
+      "id": "classification_hu",
+      "display_name": "Houston 2013 classification",
+      "family": "classification",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_classification.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/classification_hu.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/latest200e_structural_20260602/results/hu_official_alltrain_noval_weighted_ls003_lr3e5_pca30_e500_img128_f192_seed20260609/ours_v3wa_kl003_full450k/test_metrics.json",
+      "default_gpu": 0,
+      "note": "Uses the credible official train_gt all-train/no-val pipeline, not the altered ratio95 diagnostic branch."
+    },
+    {
+      "id": "classification_zy",
+      "display_name": "ZY1-02D classification",
+      "family": "classification",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_classification.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/classification_zy.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/ours_v3wa_kl003_full450k_downstream_20260508/results/classification_zy/ours_v3wa_kl003_full450k/test_metrics.json",
+      "default_gpu": 1
+    },
+    {
+      "id": "detection_htd_mosaic",
+      "display_name": "HTD-Mosaic target detection",
+      "family": "detection",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_detection.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/detection_htd_mosaic.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/ours_v3wa_kl003_full450k_downstream_20260508/results/detection_htd_mosaic/ours_v3wa_kl003_full450k/test_metrics.json",
+      "default_gpu": 2
+    },
+    {
+      "id": "detection_htd_aviris",
+      "display_name": "HTD-AVIRIS target detection",
+      "family": "detection",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_detection.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/detection_htd_aviris.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/ours_v3wa_kl003_full450k_downstream_20260508/results/detection_htd_aviris/ours_v3wa_kl003_full450k/test_metrics.json",
+      "default_gpu": 3
+    },
+    {
+      "id": "detection_had_pavia",
+      "display_name": "HAD-Pavia anomaly detection",
+      "family": "detection",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_detection_rank_priorblend_20260603.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/detection_had_pavia.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/latest200e_structural_20260602/results/had_pavia_semigt_calibrated_a008_gtlabel_l001_m006_lr12e5_bg045_fg0009_e100_f192h160_seed20260616/ours_v3wa_kl003_full450k/test_metrics.json",
+      "default_gpu": 0,
+      "note": "Uses the calibrated rank/prior-blend Pavia branch selected for the paper."
+    },
+    {
+      "id": "detection_had_cri",
+      "display_name": "HAD-CRI anomaly detection",
+      "family": "detection",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_detection.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/detection_had_cri.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/ours_v3wa_kl003_full450k_downstream_20260508/results/detection_had_cri/ours_v3wa_kl003_full450k/test_metrics.json",
+      "default_gpu": 1
+    },
+    {
+      "id": "detection_had_viareggio",
+      "display_name": "HAD-Viareggio anomaly detection",
+      "family": "detection",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_detection.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/detection_had_viareggio.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/ours_v3wa_kl003_full450k_downstream_20260508/results/detection_had_viareggio_official/ours_v3wa_kl003_full450k/test_metrics.json",
+      "default_gpu": 2
+    },
+    {
+      "id": "change_farmland",
+      "display_name": "Farmland change detection",
+      "family": "change_detection",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_change_detection.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/change_farmland.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/ours_v3wa_kl003_full450k_downstream_20260508/results/change_farmland/ours_v3wa_kl003_full450k/test_metrics.json",
+      "default_gpu": 3
+    },
+    {
+      "id": "change_hermiston",
+      "display_name": "Hermiston change detection",
+      "family": "change_detection",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_change_detection.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/change_hermiston.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/ours_v3wa_kl003_full450k_history_epoch130cfg_rerun_20260509/fair_tune_v4_20260510/results/hermiston_freeze_spectral_lr1e4_e120/ours_v3wa_kl003_full450k/test_metrics.json",
+      "default_gpu": 0
+    },
+    {
+      "id": "change_oscd",
+      "display_name": "OSCD change detection",
+      "family": "change_detection",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_oscd_change_detection.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/change_oscd.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/ours_whu_oscd_improve_20260520/results/oscd_f1cal_posw68_focal015_dice008_ls001_scan_tta_lr3e6_28k_bs4acc8_f192_h256_seed3729/ours_v3wa_kl003_full450k/test_metrics.json",
+      "default_gpu": 1,
+      "note": "Old init_model is dropped by default; this keeps the F1-calibrated protocol but avoids reusing previous fine-tuned weights."
+    },
+    {
+      "id": "change_bayarea",
+      "display_name": "Bay Area change detection",
+      "family": "change_detection",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_change_detection_spatial_head_20260602.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/change_bayarea.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/latest200e_structural_20260602/results/bayarea_spatial_centeravg_train3000_lr25e5_e160_stats_f192h224_seed20260602/ours_v3wa_kl003_full450k/test_metrics.json",
+      "default_gpu": 2
+    },
+    {
+      "id": "change_santa_barbara",
+      "display_name": "Santa Barbara change detection",
+      "family": "change_detection",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_change_detection_spatial_head_20260602.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/change_santa_barbara.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/latest200e_structural_20260602/results/barbara_spatial_centeravg_train4000_lr4e5_e180_spectral_f192h256_seed20260602/ours_v3wa_kl003_full450k/test_metrics.json",
+      "default_gpu": 3
+    },
+    {
+      "id": "segmentation_aerorit",
+      "display_name": "AeroRIT semantic segmentation",
+      "family": "semantic_segmentation",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_specaware_segmentation.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/segmentation_aerorit.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/specaware_comparison_v1_20260510/aerorit_ours_upeernet_lr5e5_e100_crop128_acc16_20260511/test_metrics.json",
+      "default_gpu": 0,
+      "note": "Uses the previous high non-strict AeroRIT pipeline; strict AeroRIT can be added as a separate audit branch later."
+    },
+    {
+      "id": "segmentation_qingpu_hsi",
+      "display_name": "Qingpu-HSI semantic segmentation",
+      "family": "semantic_segmentation",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_specaware_segmentation.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/segmentation_qingpu_hsi.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/specaware_comparison_v1_20260510/qingpu_ours_upeernet_lr5e5_e100_crop128_acc16_20260511/test_metrics.json",
+      "default_gpu": 1
+    },
+    {
+      "id": "segmentation_whu_h2sr",
+      "display_name": "WHU-H2SR semantic segmentation",
+      "family": "semantic_segmentation",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_specaware_segmentation_whu_fulltile_lovasz_20260602.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/segmentation_whu_h2sr.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/ours_whu_oscd_improve_20260520/results/whu_target82_seed20260672_exp70init_crop288_dec384_lovasz020_siou032_focal010_boost3x15_8x22_lr9e6_e180/ours_v3wa_kl003_full450k/test_metrics.json",
+      "default_gpu": 2,
+      "note": "Old WHU init_model is dropped by default to keep the new-model evaluation clean."
+    },
+    {
+      "id": "unmixing_urban4",
+      "display_name": "Urban4 hyperspectral unmixing",
+      "family": "unmixing",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/run_hypersigma_unmixing_reference.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/unmixing_urban4.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/ours_v3wa_kl003_full450k_downstream_20260508/results/unmix_urban4_hypersigma_spreg6/ours_v3wa_kl003_full450k/test_metrics.json",
+      "default_gpu": 3
+    },
+    {
+      "id": "denoising_wdc_case5",
+      "display_name": "WDC Mall Case5 denoising",
+      "family": "denoising",
+      "runner": "config_cli",
+      "script": "${REPO_ROOT}/scripts/finetune_denoising.py",
+      "old_config": "${DOWNSTREAM_ROOT}/configs/tasks/denoising_wdc_case5.json",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/result/latest200e_structural_20260602/results/wdc_latest200e_branchB_l2sam_lr12e7_enc008_sam25e5_e80_seed20260605/test_metrics.json",
+      "default_gpu": 0,
+      "note": "Old denoising init_model is dropped by default; keeps WDC hyperparameters without importing an old fine-tuned decoder."
+    },
+    {
+      "id": "inversion_greenhyperspectra",
+      "display_name": "GreenHyperSpectra leaf nitrogen inversion",
+      "family": "inversion",
+      "runner": "inversion_multiview",
+      "dataset_npz": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/inversion_benchmark_20260624/data/processed/greenhyperspectra_leaf_nitrogen.npz",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/inversion_benchmark_20260624/results_aware_multiview_v3/greenhyperspectra_leaf_nitrogen/search_v1/test_metrics.json",
+      "default_gpu": 1
+    },
+    {
+      "id": "inversion_qxrd_kaolinite",
+      "display_name": "QXRD kaolinite abundance inversion",
+      "family": "inversion",
+      "runner": "inversion_domain_specialist",
+      "branch": "qxrd",
+      "dataset_npz": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/inversion_benchmark_20260624/data/processed/clay_lithium_kaolinite_abundance.npz",
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/inversion_benchmark_20260624/results_aware_domain_specialist_v4/qxrd/search_v1/test_metrics.json",
+      "default_gpu": 2
+    },
+    {
+      "id": "inversion_karly_soil_moisture",
+      "display_name": "KarLy soil moisture inversion",
+      "family": "inversion",
+      "runner": "inversion_true_fullft",
+      "mode": "karly_v10_temporal",
+      "dataset_npz": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/hysens_pixel_regression_case_20260609/data/processed/karly_soil_moisture.npz",
+      "domain_features_npz": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/inversion_benchmark_20260624/results_aware_domain_specialist_v4/karly/search_v1/domain_features.npz",
+      "groups_npz": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/inversion_benchmark_20260624/data/processed/karly_fullft_groups.npz",
+      "raw_root": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/hysens_pixel_regression_case_20260609/data/raw",
+      "head_lr": 0.0001,
+      "adapter_lr": 7e-06,
+      "backbone_lr": 1.2e-06,
+      "decoder_lr": 4e-06,
+      "dropout": 0.1,
+      "seeds": [
+        20260724,
+        20260725,
+        20260726
+      ],
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/inversion_benchmark_20260624/results_aware_relaxed_v9v10/karly_v10_temporal/test_metrics.json",
+      "default_gpu": 3
+    },
+    {
+      "id": "inversion_gloria_chla",
+      "display_name": "GLORIA chlorophyll-a inversion",
+      "family": "inversion",
+      "runner": "inversion_true_fullft",
+      "mode": "gloria_v16_tail_asinh",
+      "dataset_npz": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/hysens_pixel_regression_case_20260609/data/processed/gloria_chlorophyll.npz",
+      "domain_features_npz": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/inversion_benchmark_20260624/results_aware_domain_specialist_v4/gloria/search_v1/domain_features.npz",
+      "groups_npz": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/inversion_benchmark_20260624/data/processed/gloria_fullft_groups.npz",
+      "raw_root": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/hysens_pixel_regression_case_20260609/data/raw",
+      "head_lr": 0.0001,
+      "adapter_lr": 8e-06,
+      "backbone_lr": 1.5e-06,
+      "decoder_lr": 5e-06,
+      "dropout": 0.12,
+      "seeds": [
+        20260814,
+        20260815,
+        20260816
+      ],
+      "old_result": "${SPECTRAALIGN_DATA_ROOT}/Aware_open/inversion_benchmark_20260624/results_aware_gloria_v13v16/gloria_v16_tail_asinh/test_metrics.json",
+      "default_gpu": 0,
+      "note": "Uses v16 tail/asinh branch, which matches the manuscript RMSE 8.47716."
+    }
+  ]
+}

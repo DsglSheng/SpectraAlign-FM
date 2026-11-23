@@ -1,0 +1,68 @@
+{
+  "created": "2026-06-09",
+  "case": "HySens Table VII pixel-based spectroscopy regression",
+  "datasets": {
+    "bavaria_soc": {
+      "display_name": "Bavaria Soil Organic Carbon",
+      "target": "soil_organic_carbon",
+      "status": "manual_required",
+      "availability_note": "The cited SOC article says the authors do not have permission to share the soil data; exact HySens Bavaria-SOC cannot be auto-downloaded.",
+      "source_article": "https://www.sciencedirect.com/science/article/pii/S1569843225001517",
+      "raw_dir": "data/raw/bavaria_soc_manual",
+      "processed_npz": "data/processed/bavaria_soc.npz",
+      "sensor": "desis",
+      "metadata_sensor_fallback": "others",
+      "level": "surface",
+      "wavelength_range_nm": [400.0, 1000.0],
+      "hy_sens_reported_split": {
+        "calibration_train_val_samples": 612,
+        "test_samples": 216
+      }
+    },
+    "gloria_chlorophyll": {
+      "display_name": "GLORIA Water Chlorophyll",
+      "target": "chlorophyll_a",
+      "status": "public_downloadable",
+      "download_url": "https://download.pangaea.de/dataset/948492/files/GLORIA-2022.zip",
+      "landing_page": "https://doi.pangaea.de/10.1594/PANGAEA.948492",
+      "article": "https://www.nature.com/articles/s41597-023-01973-y",
+      "raw_file": "data/raw/GLORIA-2022.zip",
+      "processed_npz": "data/processed/gloria_chlorophyll.npz",
+      "target_aliases": ["chlorophyll", "chlorophyll_a", "chl-a", "chla", "chl_a"],
+      "target_filter": {"min": 0.0, "max": 100.0},
+      "wavelength_range_nm": [350.0, 900.0],
+      "sensor": "field",
+      "level": "field",
+      "default_split": {
+        "test_fraction": 0.1997703789,
+        "val_fraction_from_trainval": 0.2,
+        "seed": 20260609
+      },
+      "hy_sens_reported_split": {
+        "train_val_samples": 697,
+        "test_samples": 174
+      }
+    },
+    "karly_soil_moisture": {
+      "display_name": "KarLy Soil Moisture",
+      "target": "soil_moisture",
+      "status": "public_downloadable",
+      "download_url": "https://raw.githubusercontent.com/felixriese/hyperspectral-soilmoisture-dataset/v1.0.3/soilmoisture_dataset.csv",
+      "landing_page": "https://zenodo.org/records/1227837",
+      "github": "https://github.com/felixriese/hyperspectral-soilmoisture-dataset",
+      "license": "open; verify license metadata before redistribution",
+      "raw_file": "data/raw/soilmoisture_dataset.csv",
+      "processed_npz": "data/processed/karly_soil_moisture.npz",
+      "target_aliases": ["soil_moisture", "soil moisture", "moisture", "sm"],
+      "wavelength_range_nm": [400.0, 1000.0],
+      "sensor": "field",
+      "level": "field",
+      "default_split": {
+        "test_fraction": 0.2,
+        "val_fraction_from_trainval": 0.2,
+        "seed": 20260609
+      },
+      "hy_sens_reported_samples": 679
+    }
+  }
+}

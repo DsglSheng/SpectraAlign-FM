@@ -1,0 +1,51 @@
+{
+  "scheduled_start_cst": "2026-07-08 07:00:00",
+  "model_name": "aware_hsi_dz1_525k_fromscratch_v1",
+  "queue_policy": {
+    "unit": "one detached screen per GPU",
+    "execution": "sequential within each GPU queue",
+    "on_task_failure": "record failure and continue with the next dataset",
+    "checkpoint_policy": [
+      "wait for Stage B completion",
+      "prefer stage_b/checkpoints/best_total.pt",
+      "fallback to checkpoint recorded in stage_completion.json",
+      "fallback to epoch_0132.pt",
+      "fallback to latest.pt"
+    ]
+  },
+  "queues": {
+    "0": [
+      "segmentation_whu_h2sr",
+      "classification_ip",
+      "detection_htd_mosaic",
+      "change_farmland",
+      "unmixing_urban4",
+      "inversion_greenhyperspectra"
+    ],
+    "1": [
+      "denoising_wdc_case5",
+      "classification_pu",
+      "classification_hc",
+      "detection_had_cri",
+      "change_bayarea",
+      "inversion_qxrd_kaolinite"
+    ],
+    "2": [
+      "inversion_karly_soil_moisture",
+      "classification_hh",
+      "classification_zy",
+      "detection_htd_aviris",
+      "detection_had_viareggio",
+      "change_hermiston",
+      "segmentation_aerorit"
+    ],
+    "3": [
+      "inversion_gloria_chla",
+      "classification_hu",
+      "detection_had_pavia",
+      "change_oscd",
+      "change_santa_barbara",
+      "segmentation_qingpu_hsi"
+    ]
+  }
+}
