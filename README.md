@@ -41,6 +41,12 @@ See the [joint pretraining guide](pretraining/README.md), the [downstream guide]
 
 Training and evaluation use local datasets, prototype banks, and checkpoints. Set `SPECTRAALIGN_DATA_ROOT` to the absolute path to those assets or use the default `data/` directory at the repository root. The supplementary comparison scripts also need the external baselines, their checkpoints, and paths appropriate to your environment.
 
+## Ground spectra
+
+The ground-spectrum archive contains the 30,427 entries used as candidates for the four sensor-specific prototype banks. The soil subset includes 3,160 spectra from LUCAS 2009 TOPSOIL. The data guide lists the original sources, access terms, and file layout. [Ground spectra and source information](docs/ground_spectra.md)
+
+Download the archive from Baidu Netdisk using extraction code `phmx`. [Baidu Netdisk](https://pan.baidu.com/s/1O0Hqcc5m6LFRh_MDBokMgw?pwd=phmx)
+
 ## Third-party code
 
 The vendored `dinov3/` modules are distributed under the [included DINOv3 License](DINOV3_LICENSE.md).

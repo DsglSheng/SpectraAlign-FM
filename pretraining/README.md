@@ -13,7 +13,7 @@ export INPUT="$SPECTRAALIGN_DATA_ROOT/raw_dz1"
 bash pretraining/scripts/launch_prepare_full.sh
 ```
 
-Place your EO-1/GF-5 shards under `sigma450k_shards/` in the data directory, or set `HYPERGLOBAL_SHARDS` to their path. If the DZ1 shards are already prepared elsewhere, set `DZ1_SHARDS` to that directory. Use the same ground spectral library for the four sensor-specific banks to reproduce the paper recipe.
+Place your EO-1/GF-5 shards under `sigma450k_shards/` in the data directory, or set `HYPERGLOBAL_SHARDS` to their path. If the DZ1 shards are already prepared elsewhere, set `DZ1_SHARDS` to that directory. Use the same ground spectral library for the four sensor-specific banks to reproduce the paper recipe. [Ground spectra download and sources](../docs/ground_spectra.md)
 
 ```bash
 python scripts/build_ground_prototypes.py \
